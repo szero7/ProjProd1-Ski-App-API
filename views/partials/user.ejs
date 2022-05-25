@@ -1,0 +1,35 @@
+<div class="card p-3 mb-4 position-relative">
+    <div class="row justify-content-between p-2 px-3">
+        <div class="col-auto thumb-post">
+            <div class="row">
+                <div class="col-auto">
+                    <img src="https://loremflickr.com/320/240/man,woman?random=<%= index %>" width="50px" height="50px" class="rounded-circle mr-2">
+                </div>
+                <div class="col">
+                    <span class="font-weight-bold d-block"><a href="/profile/<%=user.id%>"><%= user.name %></a></span>
+                    <small class="text-primary">Administrateur</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-auto text-end">
+            <%if (self) { %>
+                <% if (!onlyFriends) { %>
+                    <% if (friends.find(friend => friend.id === user.id)) { %>
+                        <a href="/removeFriend/search/<%= user.id %>" class="btn btn-primary">Remove</a>
+                    <% } else { %>
+                        <a href="/addFriend/search/<%= user.id %>" class="btn btn-secondary">Add as Friend</a>
+                    <% } %>
+                <% } else { %>
+                    <a href="/removeFriend/profile/<%= user.id %>" class="btn btn-primary">Remove</a>
+                <% } %>
+            <% } else { %>
+                <% if (myFriends.find(friend => friend.id === user.id)) { %>
+                    <a href="/removeFriend/profile/<%= user.id %>" class="btn btn-primary">Remove</a>
+                <% } else { %>
+                    <a href="/addFriend/profile/<%= user.id %>" class="btn btn-secondary">Add as Friend</a>
+                <% } %>
+            <% } %>
+        </div>
+    </div>
+</div>
